@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>D3</title>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<style>
+
+		.chart div {
+		  font: 10px sans-serif;
+		  background-color: steelblue;
+		  text-align: right;
+		  padding: 3px;
+		  margin: 1px;
+		  color: white;
+		}
+
+	</style>
+</head>
+<body>
+
+<div class="chart"></div>
+
+<script>
+
+var data = [4, 8, 15, 16, 23, 42];
+
+var x = d3.scaleLinear()
+    .domain([0, d3.max(data)])
+    .range([0, 420]);
+
+d3.select(".chart")
+  .selectAll("div")
+    .data(data)
+  .enter().append("div")
+    .style("width", function(d) { return x(d) + "px"; })
+    .text(function(d) { return d; });
+
+// d3.select('body')
+// 	.style('background-color', 'cornflowerblue');
+
+// d3.selectAll("p")
+//   .data([4, 8, 15, 16, 23, 42]);
+
+// d3.selectAll('p')
+//   .style("font-size", function(d) { return d + "px"; });
+
+// d3.selectAll("p").style("color", function(d, i) {
+//   return i % 2 ? "#fff" : "#ccc";
+// });
+
+// d3.select("body")
+//   .selectAll("p")
+//   .data([4, 8, 15, 16, 23, 42])
+//   .enter().append("p")
+//     .text(function(d) { return "I’m number " + d + "!"; });
+
+
+// // Update…
+// var p = d3.select("body")
+//   .selectAll("p")
+//   .data([4, 8, 15, 16, 23, 42])
+//     .text(function(d) { return d; });
+
+// // Enter…
+// p.enter().append("p")
+// 	.text(function(d) { return "I'm number " + d + "!"; });
+
+// // Exit…
+// p.exit().remove();
+
+d3.selectAll("circle").transition()
+    .duration(750)
+    .delay(function(d, i) { return i * 10; })
+    .attr("r", function(d) { return Math.sqrt(d * scale); });
+
+// d3.selectAll('p')
+// 	.append('p')
+// 		.text(function (d, i) { return i ; });
+
+</script>
+
+</body>
+</html>
